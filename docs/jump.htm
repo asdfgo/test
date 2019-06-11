@@ -8,12 +8,18 @@
 </head>
 <body>
 <script type="text/javascript">
-var d = function(s){
+var 
+r = function(s){
+	return s.replace(/[a-zA-Z]/g, function(c){
+		return var_fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+	});
+},
+d = function(s){
 	if(!s)return '';
 	var k=new RegExp('\\\\'+s.charAt(s.length-1),"g");
 	s=s.substring(0,s.length-1);
 	s=s.replace(k,'%');
-	return decodeURIComponent(s.rot13());
+	return decodeURIComponent(r(s));
 },
 re = /(^|\?|&)url=([\w\-]+)/,
 s = window.location.search,
