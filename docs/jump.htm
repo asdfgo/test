@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head><title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+</head>
+<body>
+<script type="text/javascript">
+var d = function(s){
+	if(!s)return '';
+	var k=new RegExp('\\\\'+s.charAt(s.length-1),"g");
+	s=s.substring(0,s.length-1);
+	s=s.replace(k,'%');
+	return decodeURIComponent(s.rot13());
+},
+re = /(^|\?|&)url=([\w\-]+)/,
+s = window.location.search,
+m = s.match(re);
+window.location.href = m ? d(m[2]) : '/';
+</script>
+</body>
+</html>
