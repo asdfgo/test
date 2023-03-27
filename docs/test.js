@@ -1,1 +1,1 @@
-feed_data({'title': 'This is a test.'});
+alert('test.js');
